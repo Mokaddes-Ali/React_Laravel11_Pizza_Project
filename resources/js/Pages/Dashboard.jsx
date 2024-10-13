@@ -1,26 +1,29 @@
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import { Head } from '@inertiajs/react';
+import React from 'react';
+import { BrowserRouter , Router, Routes, Route, Link } from 'react-router-dom';
+import Profile from '@/Pages/Profile';
+import Settings from '@/Pages/Settings';
 
-export default function Dashboard() {
-    return (
-        <AuthenticatedLayout
-            header={
-                <h2 className="text-xl font-semibold leading-tight text-gray-800">
-                    Dashboard
-                </h2>
-            }
-        >
-            <Head title="Dashboard" />
+const Dashboard = () => {
+  return (
+    <Router>
+      <div>
+        <h2 className="text-2xl font-bold">Dashboard</h2>
+        <nav>
+          <ul>
+            <li><Link to="/dashboard/profile">Profile</Link></li>
+            <li><Link to="/dashboard/settings">Settings</Link></li>
+          </ul>
+        </nav>
 
-            <div className="py-12">
-                <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
-                    <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg">
-                        <div className="p-6 text-gray-900">
-                            You're logged in!
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </AuthenticatedLayout>
-    );
-}
+        <Routes>
+          <Route path="profile" element={<Profile />} />
+          <Route path="settings" element={<Settings />} />
+        </Routes>
+      </div>
+    </Router>
+  );
+};
+
+export default Dashboard;
+
+
